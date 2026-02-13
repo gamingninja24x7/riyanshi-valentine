@@ -1,65 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Riyanshi ❤️</title>
+<meta charset="UTF-8">
+<title>Riyanshi ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="hearts-bg"></div>
+<!-- Floating Love Background -->
+<div class="love-container" id="love-container"></div>
 
-<audio id="clickSound" src="assets/click.mp3"></audio>
-<audio id="unlockSound" src="assets/unlock.mp3"></audio>
-<audio id="heartbeatSound" src="assets/heartbeat.mp3" loop></audio>
+<!-- Background Music -->
+<audio autoplay loop>
+<source src="assets/music.mp3" type="audio/mpeg">
+</audio>
 
-<!-- PASSWORD -->
-<section id="password" class="page active">
-<h1>Enter Our Secret ❤️</h1>
-<input type="password" id="passInput" placeholder="Password">
-<button id="unlockBtn">Unlock</button>
+<!-- PASSWORD SCREEN -->
+<div id="password-screen" class="panel">
+<h1>Enter the date that changed everything 💖</h1>
+<input type="password" id="password-input" placeholder="DDMMYYYY">
+<button onclick="checkPassword()">Unlock ❤️</button>
+<p id="error-msg"></p>
+</div>
+
+<!-- STEP 1 -->
+<section class="panel hidden" id="step1">
+<h1>10 October 2025 💘</h1>
+<img src="assets/memory1.jpg">
+<p>The day everything changed for me.</p>
+<button onclick="nextStep(2)">Continue 💌</button>
 </section>
 
-<!-- DATE -->
-<section id="date" class="page">
-<h1>Our Special Date 💖</h1>
-<h2>10 October 2025</h2>
-<button class="nextBtn" data-next="memory1">Continue</button>
+<!-- STEP 2 -->
+<section class="panel hidden" id="step2">
+<img src="assets/memory2.jpg">
+<p>This moment means more than words.</p>
+<button onclick="nextStep(3)">Next 💞</button>
 </section>
 
-<!-- MEMORY 1 -->
-<section id="memory1" class="page">
-<img src="assets/img1.jpg">
-<p>Kissing your hand wasn't just a moment… it was a promise.</p>
-<button class="nextBtn" data-next="memory2">Next</button>
+<!-- STEP 3 -->
+<section class="panel hidden" id="step3">
+<img src="assets/memory3.jpg">
+<p>My favorite version of us.</p>
+<button onclick="nextStep(4)">Next 💖</button>
 </section>
 
-<!-- MEMORY 2 -->
-<section id="memory2" class="page">
-<img src="assets/img2.jpg">
-<p>Your smile makes my whole world softer.</p>
-<button class="nextBtn" data-next="memory3">Next</button>
+<!-- STEP 4 (GAME) -->
+<section class="panel hidden" id="step4">
+<h2>Before the final surprise… 💝</h2>
+<p>Catch 10 hearts to unlock it.</p>
+<h3>Score: <span id="score">0</span></h3>
+<div id="game-area"></div>
 </section>
 
-<!-- MEMORY 3 -->
-<section id="memory3" class="page">
-<img src="assets/img3.jpg">
-<p>With you, even silence feels beautiful.</p>
-<button id="startGameBtn">Play a Game 💘</button>
+<!-- STEP 5 -->
+<section class="panel hidden" id="step5">
+<div class="transition-box">
+<h1>You unlocked something special… 💘</h1>
+<p>Now it’s time for the real surprise.</p>
+<button onclick="goToProposal()">Continue ❤️</button>
+</div>
 </section>
 
-<!-- GAME -->
-<section id="game" class="page">
-<h1>Catch 10 Hearts 💓</h1>
-<div id="gameArea"></div>
-<h2>Score: <span id="score">0</span></h2>
-</section>
+<!-- PREMIUM POPUP -->
+<div id="love-popup" class="popup hidden">
+<div class="popup-box pulse">
+<div class="popup-hearts"></div>
+<h2>You collected enough love 💖</h2>
+<p>Just like you collected my heart.</p>
+<button onclick="closePopup()">Continue ❤️</button>
+</div>
+</div>
 
-<!-- FINAL -->
-<section id="final" class="page">
-<h1>You unlocked my heart ❤️</h1>
-<button id="proposalBtn">Final Surprise 💍</button>
-</section>
+<audio id="unlock-sound">
+<source src="assets/unlock.mp3" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
 </body>

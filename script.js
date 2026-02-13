@@ -1,6 +1,7 @@
 /* PASSWORD */
 function checkPassword() {
 const input = document.getElementById("password-input").value;
+
 if (input === "10102025") {
 document.getElementById("password-screen").style.display = "none";
 document.getElementById("step1").classList.remove("hidden");
@@ -35,6 +36,7 @@ setInterval(createLove, 400);
 /* GAME */
 let score = 0;
 let gameActive = true;
+
 const scoreDisplay = document.getElementById("score");
 const gameArea = document.getElementById("game-area");
 
@@ -50,6 +52,7 @@ heart.onclick = () => {
 score++;
 scoreDisplay.textContent = score;
 heart.remove();
+
 if (score === 10) endGame();
 };
 
@@ -61,13 +64,9 @@ setInterval(createHeart, 800);
 
 function endGame() {
 gameActive = false;
-setTimeout(() => {
-document.getElementById("love-popup").classList.remove("hidden");
-}, 300);
-}
 
-function closePopup() {
-document.getElementById("love-popup").classList.add("hidden");
+setTimeout(() => {
+alert("You collected enough love ❤️");
 
 const gameSection = document.getElementById("step4");
 gameSection.style.opacity = "0";
@@ -76,6 +75,8 @@ setTimeout(() => {
 gameSection.classList.add("hidden");
 document.getElementById("step5").classList.remove("hidden");
 }, 800);
+
+}, 300);
 }
 
 /* REDIRECT */

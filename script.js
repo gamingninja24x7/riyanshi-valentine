@@ -66,7 +66,7 @@ function endGame() {
 gameActive = false;
 
 setTimeout(() => {
-alert("You collected enough love ❤️");
+alert("You collected enough love❤️ baby just like you collected my heart.");
 
 const gameSection = document.getElementById("step4");
 gameSection.style.opacity = "0";

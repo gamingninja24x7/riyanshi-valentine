@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Riyanshi ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +14,6 @@
 <!-- Password Screen -->
 <div id="password-screen">
 <h1>Enter the date that changed everything</h1>
-<h2>(Format : DDMMYYYY )</h2>
 <input type="password" id="password-input" placeholder="DDMMYYYY">
 <button onclick="checkPassword()">Enter</button>
 <p id="error-msg"></p>
@@ -28,32 +28,27 @@
 
 <section class="panel hero">
 <h1>Hi Riyanshi,</h1>
-<h2>This is a small present for you my love . Hope you will like it. </h2>
+<h2>This is my favorite website.</h2>
+<button class="scroll-btn" onclick="scrollNext()">⬇️</button>
 </section>
 
 <section class="panel image-section">
 <img src="assets/memory1.jpg">
-<p>
-The beginning.
-When everything felt light… but meaningful.
-</p>
+<p>The beginning. When everything felt light… but meaningful.</p>
+<button class="scroll-btn" onclick="scrollNext()">⬇️</button>
 </section>
 
 <section class="panel image-section">
 <img src="assets/handkiss.jpg">
-<p>
-Not just romance.
-Respect. Care.
-<br><em>10 October 2025.</em>
-</p>
+<p>Not just romance. Respect. Care.
+<br><em>10 October 2025.</em></p>
+<button class="scroll-btn" onclick="scrollNext()">⬇️</button>
 </section>
 
 <section class="panel image-section">
 <img src="assets/happy.jpg">
-<p>
-My favorite version of us.
-Safe. Laughing. Together.
-</p>
+<p>My favorite version of us. Safe. Laughing. Together.</p>
+<button class="scroll-btn" onclick="scrollNext()">⬇️</button>
 </section>
 
 <section class="panel future">
@@ -63,12 +58,21 @@ Initial Investment: 10/10/2025
 <br>Current Valuation: Priceless.
 <br>Exit Option: Not Available.
 </p>
+<button class="scroll-btn" onclick="scrollNext()">⬇️</button>
 </section>
 
-<section class="panel final">
-<h1>Will you be my Valentine?</h1>
-<button class="yes">YES 💘</button>
-<button class="yes">Obviously YES 😌</button>
+<section class="panel game">
+<h2>Mini Game: Catch The Love 💖</h2>
+<p>Tap the hearts to collect love!</p>
+<h3>Score: <span id="score">0</span></h3>
+<div id="game-area"></div>
+<button class="scroll-btn" onclick="scrollNext()">⬇️</button>
+</section>
+
+<section class="panel transition">
+<h1>There’s one last thing…</h1>
+<p>But it deserves its own moment.</p>
+<button onclick="goToProposal()">Continue ❤️</button>
 </section>
 
 </div>

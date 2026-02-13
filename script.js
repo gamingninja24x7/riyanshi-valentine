@@ -83,3 +83,13 @@ document.getElementById("step5").classList.remove("hidden");
 function goToProposal() {
 window.location.href = "https://gamingninja24x7.github.io/valentine/";
 }
+
+const music = document.getElementById("bgMusic");
+
+function startMusic() {
+if (music.paused) {
+music.play().catch(error => {
+console.log("Autoplay blocked:", error);
+});
+}
+}

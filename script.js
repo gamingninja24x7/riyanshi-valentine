@@ -1,81 +1,92 @@
-let currentScore = 0;
-let gameInterval;
+const pages = document.querySelectorAll(".page");
+const clickSound = document.getElementById("clickSound");
 
 function vibrate() {
 if (navigator.vibrate) navigator.vibrate(40);
 }
 
 function playClick() {
-document.getElementById("click-sound").play();
+clickSound.currentTime = 0;
+clickSound.play();
 vibrate();
 }
 
-function checkPassword() {
-playClick();
-const pass = document.getElementById("password").value;
-if(pass === "10102025") {
-document.getElementById("unlock-sound").play();
-showNext("date-section");
-}
-}
-
-function showNext(id) {
-document.querySelectorAll(".section").forEach(sec=>sec.classList.remove("active"));
+function showPage(id) {
+pages.forEach(p => p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-playClick();
 }
 
-function startGame() {
-showNext("game-section");
-currentScore = 0;
-document.getElementById("score").innerText = currentScore;
+/* PASSWORD */
+document.getElementById("unlockBtn").addEventListener("click", function(){
+playClick();
+const value = document.getElementById("passInput").value;
+if(value === "10102025"){
+document.getElementById("unlockSound").play();
+showPage("date");
+}
+});
 
+/* NEXT BUTTONS */
+document.querySelectorAll(".nextBtn").forEach(btn=>{
+btn.addEventListener("click", function(){
+playClick();
+showPage(this.dataset.next);
+});
+});
+
+/* GAME */
+let score = 0;
+let gameInterval;
+
+document.getElementById("startGameBtn").addEventListener("click", function(){
+playClick();
+showPage("game");
+startGame();
+});
+
+function startGame(){
+score = 0;
+document.getElementById("score").innerText = score;
 gameInterval = setInterval(createHeart, 800);
 }
 
-function createHeart() {
+function createHeart(){
 const heart = document.createElement("div");
 heart.classList.add("heart");
 heart.innerHTML = "❤️";
 heart.style.left = Math.random()*90 + "%";
 
-heart.onclick = function() {
-currentScore++;
-document.getElementById("score").innerText = currentScore;
+heart.addEventListener("click", function(){
+score++;
+document.getElementById("score").innerText = score;
 heart.remove();
-
-if(currentScore >= 10) {
+if(score >= 10){
 clearInterval(gameInterval);
-setTimeout(endGame, 500);
+document.getElementById("heartbeatSound").play();
+setTimeout(()=>showPage("final"),500);
 }
-};
+});
 
-document.getElementById("game-area").appendChild(heart);
-
+document.getElementById("gameArea").appendChild(heart);
 setTimeout(()=>heart.remove(),3000);
 }
 
-function endGame() {
-document.getElementById("heartbeat-sound").play();
-showNext("final-section");
-}
-
-function goToProposal() {
+/* PROPOSAL */
+document.getElementById("proposalBtn").addEventListener("click", function(){
 playClick();
 setTimeout(()=>{
 window.location.href="https://gamingninja24x7.github.io/valentine/";
 },500);
-}
+});
 
 /* BACKGROUND HEARTS */
-function createBgHearts(){
-const bg=document.getElementById("hearts-bg");
-const heart=document.createElement("div");
+function createBgHeart(){
+const heart = document.createElement("div");
 heart.classList.add("bg-heart");
-heart.innerHTML=["❤️","💖","💕","💘","💓"][Math.floor(Math.random()*5)];
-heart.style.left=Math.random()*100+"%";
-heart.style.fontSize=(15+Math.random()*20)+"px";
-bg.appendChild(heart);
+heart.innerHTML = ["❤️","💖","💕","💘"][Math.floor(Math.random()*4)];
+heart.style.left = Math.random()*100+"%";
+heart.style.fontSize = (15+Math.random()*20)+"px";
+document.getElementById("hearts-bg").appendChild(heart);
 setTimeout(()=>heart.remove(),8000);
 }
-setInterval(createBgHearts,500);
+setInterval(createBgHeart,600);

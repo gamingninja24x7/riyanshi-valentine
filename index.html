@@ -1,68 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Riyanshi ❤️</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- BACKGROUND HEARTS -->
 <div id="hearts-bg"></div>
 
-<!-- AUDIO -->
-<audio id="click-sound" src="assets/click.mp3"></audio>
-<audio id="unlock-sound" src="assets/unlock.mp3"></audio>
-<audio id="heartbeat-sound" src="assets/heartbeat.mp3" loop></audio>
+<audio id="clickSound" src="assets/click.mp3"></audio>
+<audio id="unlockSound" src="assets/unlock.mp3"></audio>
+<audio id="heartbeatSound" src="assets/heartbeat.mp3" loop></audio>
 
-<!-- PASSWORD PAGE -->
-<div class="section active" id="password-section">
+<!-- PASSWORD -->
+<section id="password" class="page active">
 <h1>Enter Our Secret ❤️</h1>
-<input type="password" id="password" placeholder="Password">
-<button onclick="checkPassword()">Unlock</button>
-</div>
+<input type="password" id="passInput" placeholder="Password">
+<button id="unlockBtn">Unlock</button>
+</section>
 
-<!-- DATE PAGE -->
-<div class="section" id="date-section">
+<!-- DATE -->
+<section id="date" class="page">
 <h1>Our Special Date 💖</h1>
 <h2>10 October 2025</h2>
-<button onclick="showNext('memory1')">Continue</button>
-</div>
+<button class="nextBtn" data-next="memory1">Continue</button>
+</section>
 
 <!-- MEMORY 1 -->
-<div class="section" id="memory1">
+<section id="memory1" class="page">
 <img src="assets/img1.jpg">
-<p>Kissing your hand wasn’t just a moment… it was a promise of respect, protection and forever.</p>
-<button onclick="showNext('memory2')">Next</button>
-</div>
+<p>Kissing your hand wasn't just a moment… it was a promise.</p>
+<button class="nextBtn" data-next="memory2">Next</button>
+</section>
 
 <!-- MEMORY 2 -->
-<div class="section" id="memory2">
+<section id="memory2" class="page">
 <img src="assets/img2.jpg">
-<p>Every smile of yours makes my world softer.</p>
-<button onclick="showNext('memory3')">Next</button>
-</div>
+<p>Your smile makes my whole world softer.</p>
+<button class="nextBtn" data-next="memory3">Next</button>
+</section>
 
 <!-- MEMORY 3 -->
-<div class="section" id="memory3">
+<section id="memory3" class="page">
 <img src="assets/img3.jpg">
 <p>With you, even silence feels beautiful.</p>
-<button onclick="startGame()">Play a Game 💘</button>
-</div>
+<button id="startGameBtn">Play a Game 💘</button>
+</section>
 
 <!-- GAME -->
-<div class="section" id="game-section">
+<section id="game" class="page">
 <h1>Catch 10 Hearts 💓</h1>
-<div id="game-area"></div>
+<div id="gameArea"></div>
 <h2>Score: <span id="score">0</span></h2>
-</div>
+</section>
 
-<!-- FINAL MESSAGE -->
-<div class="section" id="final-section">
+<!-- FINAL -->
+<section id="final" class="page">
 <h1>You unlocked my heart ❤️</h1>
-<button onclick="goToProposal()">Final Surprise 💍</button>
-</div>
+<button id="proposalBtn">Final Surprise 💍</button>
+</section>
 
 <script src="script.js"></script>
 </body>

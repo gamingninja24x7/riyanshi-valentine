@@ -1,0 +1,99 @@
+body {
+margin: 0;
+font-family: 'Segoe UI', sans-serif;
+background: #fff5f7;
+color: #333;
+text-align: center;
+overflow-x: hidden;
+}
+
+section {
+padding: 100px 20px;
+}
+
+.hero {
+background: linear-gradient(to right, #ff9a9e, #fad0c4);
+color: white;
+}
+
+button {
+padding: 12px 24px;
+border: none;
+border-radius: 25px;
+background: #ff4d6d;
+color: white;
+font-size: 16px;
+cursor: pointer;
+margin-top: 20px;
+}
+
+button:hover {
+opacity: 0.8;
+}
+
+/* Gallery */
+.gallery {
+background: #fff0f5;
+}
+
+.photo-block {
+margin-bottom: 60px;
+opacity: 0;
+transform: translateY(40px);
+transition: all 1s ease;
+}
+
+.photo-block.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.photo-block img {
+width: 280px;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+transition: transform 0.4s ease;
+}
+
+.photo-block img:hover {
+transform: scale(1.05);
+}
+
+.caption {
+max-width: 400px;
+margin: 20px auto 0;
+line-height: 1.6;
+}
+
+.investor-line {
+margin-top: 40px;
+font-style: italic;
+opacity: 0.7;
+}
+
+.future {
+background: #ffe3ec;
+}
+
+.final {
+background: #ffd6e0;
+}
+
+/* Floating Hearts */
+.hearts::before,
+.hearts::after {
+content: "❤️";
+position: fixed;
+font-size: 24px;
+animation: float 10s linear infinite;
+}
+
+.hearts::after {
+left: 80%;
+animation-delay: 5s;
+}
+
+@keyframes float {
+0% { top: 100%; }
+100% { top: -10%; }
+}

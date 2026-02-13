@@ -1,92 +1,103 @@
-const pages = document.querySelectorAll(".page");
-const clickSound = document.getElementById("clickSound");
-
-function vibrate() {
-if (navigator.vibrate) navigator.vibrate(40);
-}
-
-function playClick() {
-clickSound.currentTime = 0;
-clickSound.play();
-vibrate();
-}
-
-function showPage(id) {
-pages.forEach(p => p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
-
 /* PASSWORD */
-document.getElementById("unlockBtn").addEventListener("click", function(){
-playClick();
-const value = document.getElementById("passInput").value;
-if(value === "10102025"){
-document.getElementById("unlockSound").play();
-showPage("date");
+function checkPassword() {
+const input = document.getElementById("password-input").value;
+if (input === "10102025") {
+document.getElementById("password-screen").style.display = "none";
+document.getElementById("step1").classList.remove("hidden");
+} else {
+document.getElementById("error-msg").innerText = "Wrong date 💔";
 }
-});
+}
 
-/* NEXT BUTTONS */
-document.querySelectorAll(".nextBtn").forEach(btn=>{
-btn.addEventListener("click", function(){
-playClick();
-showPage(this.dataset.next);
-});
-});
+/* STEP CONTROL */
+function nextStep(stepNumber) {
+const current = document.querySelector(".panel:not(.hidden)");
+current.classList.add("hidden");
+document.getElementById("step" + stepNumber).classList.remove("hidden");
+}
+
+/* Floating Background Love */
+const loveContainer = document.getElementById("love-container");
+const emojis = ["❤️","💖","💕","💘","💗","💓"];
+
+function createLove() {
+const love = document.createElement("div");
+love.classList.add("love");
+love.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+love.style.left = Math.random() * 100 + "vw";
+love.style.animationDuration = (5 + Math.random() * 5) + "s";
+loveContainer.appendChild(love);
+setTimeout(() => love.remove(), 8000);
+}
+
+setInterval(createLove, 400);
 
 /* GAME */
 let score = 0;
-let gameInterval;
+let gameActive = true;
+const scoreDisplay = document.getElementById("score");
+const gameArea = document.getElementById("game-area");
 
-document.getElementById("startGameBtn").addEventListener("click", function(){
-playClick();
-showPage("game");
-startGame();
-});
+function createHeart() {
+if (!gameActive) return;
 
-function startGame(){
-score = 0;
-document.getElementById("score").innerText = score;
-gameInterval = setInterval(createHeart, 800);
-}
-
-function createHeart(){
 const heart = document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML = "❤️";
-heart.style.left = Math.random()*90 + "%";
+heart.innerText = "💖";
+heart.classList.add("floating-heart");
+heart.style.left = Math.random() * 90 + "%";
 
-heart.addEventListener("click", function(){
+heart.onclick = () => {
 score++;
-document.getElementById("score").innerText = score;
+scoreDisplay.textContent = score;
 heart.remove();
-if(score >= 10){
-clearInterval(gameInterval);
-document.getElementById("heartbeatSound").play();
-setTimeout(()=>showPage("final"),500);
-}
-});
+if (score === 10) endGame();
+};
 
-document.getElementById("gameArea").appendChild(heart);
-setTimeout(()=>heart.remove(),3000);
+gameArea.appendChild(heart);
+setTimeout(() => heart.remove(), 4000);
 }
 
-/* PROPOSAL */
-document.getElementById("proposalBtn").addEventListener("click", function(){
-playClick();
-setTimeout(()=>{
-window.location.href="https://gamingninja24x7.github.io/valentine/";
-},500);
-});
+setInterval(createHeart, 800);
 
-/* BACKGROUND HEARTS */
-function createBgHeart(){
+function endGame() {
+gameActive = false;
+
+setTimeout(() => {
+document.getElementById("love-popup").classList.remove("hidden");
+document.getElementById("unlock-sound").play();
+createPopupHearts();
+}, 300);
+}
+
+function closePopup() {
+document.getElementById("love-popup").classList.add("hidden");
+
+const gameSection = document.getElementById("step4");
+gameSection.style.opacity = "0";
+
+setTimeout(() => {
+gameSection.classList.add("hidden");
+document.getElementById("step5").classList.remove("hidden");
+}, 800);
+}
+
+function createPopupHearts() {
+const container = document.querySelector(".popup-hearts");
+const popupEmojis = ["💖","💕","💘","💓"];
+
+const interval = setInterval(() => {
 const heart = document.createElement("div");
-heart.classList.add("bg-heart");
-heart.innerHTML = ["❤️","💖","💕","💘"][Math.floor(Math.random()*4)];
-heart.style.left = Math.random()*100+"%";
-heart.style.fontSize = (15+Math.random()*20)+"px";
-document.getElementById("hearts-bg").appendChild(heart);
-setTimeout(()=>heart.remove(),8000);
+heart.classList.add("popup-heart");
+heart.innerText = popupEmojis[Math.floor(Math.random() * popupEmojis.length)];
+heart.style.left = Math.random() * 90 + "%";
+container.appendChild(heart);
+setTimeout(() => heart.remove(), 4000);
+}, 300);
+
+setTimeout(() => clearInterval(interval), 3000);
 }
-setInterval(createBgHeart,600);
+
+/* REDIRECT */
+function goToProposal() {
+window.location.href = "https://gamingninja24x7.github.io/valentine/";
+}

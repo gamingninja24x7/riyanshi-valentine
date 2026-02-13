@@ -79,10 +79,13 @@ transform: scale(0.96);
 
 /* Images */
 img {
-max-width: 80%;
-border-radius: 20px;
-margin-bottom: 20px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+width: 85%;
+max-width: 300px;
+height: auto;
+border-radius: 25px;
+object-fit: cover;
+box-shadow: 0 12px 30px rgba(255, 77, 109, 0.25);
+margin-bottom: 25px;
 }
 
 /* Game */

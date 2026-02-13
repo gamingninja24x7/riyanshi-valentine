@@ -7,71 +7,70 @@
 </head>
 <body>
 
+<!-- Floating Love Background -->
+<div class="love-container" id="love-container"></div>
+
+<!-- Password Screen -->
+<div id="password-screen">
+<h1>Enter the date that changed everything</h1>
+<input type="password" id="password-input" placeholder="DDMMYYYY">
+<button onclick="checkPassword()">Enter</button>
+<p id="error-msg"></p>
+</div>
+
+<!-- Main Content -->
+<div id="main-content" style="display:none;">
+
 <audio autoplay loop>
 <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
 
-<section class="hero">
+<section class="panel hero">
 <h1>Hi Riyanshi,</h1>
 <h2>This is my favorite website.</h2>
-<button onclick="scrollToGallery()">Enter Our World</button>
 </section>
 
-<section class="gallery">
-<h2>Three Moments. One Story.</h2>
-
-<div class="photo-block">
+<section class="panel image-section">
 <img src="assets/memory1.jpg">
-<p class="caption">
+<p>
 The beginning.
-When everything was simple…
-but something already felt different.
+When everything felt light… but meaningful.
 </p>
-</div>
+</section>
 
-<div class="photo-block">
+<section class="panel image-section">
 <img src="assets/handkiss.jpg">
-<p class="caption">
+<p>
 Not just romance.
-Respect.
-Care.
-Choosing you — softly.
+Respect. Care.
 <br><em>10 October 2025.</em>
 </p>
-</div>
+</section>
 
-<div class="photo-block">
+<section class="panel image-section">
 <img src="assets/happy.jpg">
-<p class="caption">
-This is my favorite version of us.
-Laughing.
-Safe.
-Together.
-</p>
-</div>
-
-<p class="investor-line">
-Initial Investment: 10/10/2025
-<br>Current Value: Priceless.
+<p>
+My favorite version of us.
+Safe. Laughing. Together.
 </p>
 </section>
 
-<section class="future">
+<section class="panel future">
 <h2>Long-Term Vision</h2>
 <p>
-1 Year Plan: More memories.
-<br>3 Year Plan: Growth.
-<br>Lifetime Plan: You & Me. No exit option.
+Initial Investment: 10/10/2025
+<br>Current Valuation: Priceless.
+<br>Exit Option: Not Available.
 </p>
 </section>
 
-<section class="final">
+<section class="panel final">
 <h1>Will you be my Valentine?</h1>
 <button class="yes">YES 💘</button>
 <button class="yes">Obviously YES 😌</button>
 </section>
 
-<div class="hearts"></div>
+</div>
 
 <script src="script.js"></script>
 </body>

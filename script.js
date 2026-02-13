@@ -1,78 +1,72 @@
+/* PASSWORD */
 function checkPassword() {
 const input = document.getElementById("password-input").value;
-const errorMsg = document.getElementById("error-msg");
-
 if (input === "10102025") {
 document.getElementById("password-screen").style.display = "none";
-document.getElementById("main-content").style.display = "block";
+document.getElementById("step1").classList.remove("hidden");
 } else {
-errorMsg.textContent = "Wrong date.";
+document.getElementById("error-msg").innerText = "Wrong date 💔";
 }
 }
 
-function scrollNext() {
-window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+/* STEP CONTROL */
+function nextStep(stepNumber) {
+const current = document.querySelector(".panel:not(.hidden)");
+current.classList.add("hidden");
+document.getElementById("step" + stepNumber).classList.remove("hidden");
 }
 
-/* Redirect to Proposal Page */
-function goToProposal() {
-document.body.innerHTML = `
-<div style="
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:#fff5f7;
-font-family:'Segoe UI',sans-serif;
-text-align:center;">
-<h1>Taking you somewhere important… 💘</h1>
-<p>Because you matter that much.</p>
-</div>
-`;
-
-setTimeout(() => {
-window.location.href = "https://gamingninja24x7.github.io/valentine/";
-}, 3000);
-}
-
-/* Floating Love Emojis */
-const emojis = ["❤️","💕","💖","💘","💗","💓"];
-const container = document.getElementById("love-container");
-
-function createLove() {
-const love = document.createElement("div");
-love.classList.add("love");
-love.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-love.style.left = Math.random() * 100 + "vw";
-love.style.animationDuration = (5 + Math.random() * 5) + "s";
-love.style.fontSize = (20 + Math.random() * 25) + "px";
-container.appendChild(love);
-setTimeout(() => { love.remove(); }, 10000);
-}
-setInterval(createLove, 300);
-
-/* Mini Game */
+/* GAME */
 let score = 0;
-const gameArea = document.getElementById("game-area");
-const scoreDisplay = document.getElementById("score");
+let gameActive = true;
 
-function createGameHeart() {
+const scoreDisplay = document.getElementById("score");
+const gameArea = document.getElementById("game-area");
+
+function createHeart() {
+if (!gameActive) return;
+
 const heart = document.createElement("div");
-heart.classList.add("floating-heart");
 heart.innerText = "💖";
+heart.classList.add("floating-heart");
 heart.style.left = Math.random() * 90 + "%";
 
 heart.onclick = () => {
+if (!gameActive) return;
+
 score++;
 scoreDisplay.textContent = score;
 heart.remove();
+
 if (score === 10) {
-alert("You collected enough love. Just like you collected my heart ❤️");
+endGame();
 }
 };
 
 gameArea.appendChild(heart);
-setTimeout(() => { heart.remove(); }, 4000);
+setTimeout(() => heart.remove(), 4000);
 }
-setInterval(createGameHeart, 800);
+
+setInterval(createHeart, 800);
+
+function endGame() {
+gameActive = false;
+
+setTimeout(() => {
+alert("You collected enough love ❤️");
+
+const gameSection = document.getElementById("step4");
+gameSection.style.opacity = "0";
+
+setTimeout(() => {
+gameSection.classList.add("hidden");
+document.getElementById("step5").classList.remove("hidden");
+}, 800);
+
+}, 300);
+}
+
+/* REDIRECT */
+function goToProposal() {
+window.location.href = "https://gamingninja24x7.github.io/valentine/";
+}

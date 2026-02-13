@@ -1,3 +1,13 @@
+const music = document.getElementById("bgMusic");
+
+function startMusic() {
+if (music.paused) {
+music.play().catch(error => {
+console.log("Autoplay blocked:", error);
+});
+}
+}
+
 /* PASSWORD */
 function checkPassword() {
 const input = document.getElementById("password-input").value;
@@ -5,6 +15,7 @@ const input = document.getElementById("password-input").value;
 if (input === "10102025") {
 document.getElementById("password-screen").style.display = "none";
 document.getElementById("step1").classList.remove("hidden");
+  startMusic();
 } else {
 document.getElementById("error-msg").innerText = "Wrong date 💔";
 }
@@ -84,12 +95,4 @@ function goToProposal() {
 window.location.href = "https://gamingninja24x7.github.io/valentine/";
 }
 
-const music = document.getElementById("bgMusic");
 
-function startMusic() {
-if (music.paused) {
-music.play().catch(error => {
-console.log("Autoplay blocked:", error);
-});
-}
-}

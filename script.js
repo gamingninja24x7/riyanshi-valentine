@@ -16,7 +16,7 @@ current.classList.add("hidden");
 document.getElementById("step" + stepNumber).classList.remove("hidden");
 }
 
-/* Floating Background Love */
+/* LOVE BACKGROUND */
 const loveContainer = document.getElementById("love-container");
 const emojis = ["❤️","💖","💕","💘","💗","💓"];
 
@@ -61,11 +61,8 @@ setInterval(createHeart, 800);
 
 function endGame() {
 gameActive = false;
-
 setTimeout(() => {
 document.getElementById("love-popup").classList.remove("hidden");
-document.getElementById("unlock-sound").play();
-createPopupHearts();
 }, 300);
 }
 
@@ -79,22 +76,6 @@ setTimeout(() => {
 gameSection.classList.add("hidden");
 document.getElementById("step5").classList.remove("hidden");
 }, 800);
-}
-
-function createPopupHearts() {
-const container = document.querySelector(".popup-hearts");
-const popupEmojis = ["💖","💕","💘","💓"];
-
-const interval = setInterval(() => {
-const heart = document.createElement("div");
-heart.classList.add("popup-heart");
-heart.innerText = popupEmojis[Math.floor(Math.random() * popupEmojis.length)];
-heart.style.left = Math.random() * 90 + "%";
-container.appendChild(heart);
-setTimeout(() => heart.remove(), 4000);
-}, 300);
-
-setTimeout(() => clearInterval(interval), 3000);
 }
 
 /* REDIRECT */

@@ -41,13 +41,16 @@ opacity: 1;
 
 /* ========== PANELS ========== */
 .panel {
-min-height: 100vh; /* allows content to grow */
+width: 100%;
+min-height: 100vh;
+padding: 60px 20px;
+box-sizing: border-box;
+
 display: flex;
 flex-direction: column;
-justify-content: center;
 align-items: center;
-padding: 40px 20px;
-box-sizing: border-box;
+
+justify-content: flex-start; /* IMPORTANT */
 }
 
 .hidden {
@@ -108,11 +111,11 @@ transform: scale(0.96);
 /* ========== IMAGES (NO CUT, NO STRETCH) ========== */
 img {
 width: 100%;
-max-width: 350px; /* controls size */
-height: auto; /* keeps original ratio */
+max-width: 380px;
+height: auto;
+object-fit: contain;
 border-radius: 20px;
 margin: 20px 0;
-box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 display: block;
 }
 

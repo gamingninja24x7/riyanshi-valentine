@@ -1,44 +1,50 @@
-function scrollToGallery() {
-document.querySelector(".gallery").scrollIntoView({ behavior: "smooth" });
+function checkPassword() {
+const input = document.getElementById("password-input").value;
+const errorMsg = document.getElementById("error-msg");
+
+if (input === "10102025") {
+document.getElementById("password-screen").style.display = "none";
+document.getElementById("main-content").style.display = "block";
+} else {
+errorMsg.textContent = "Wrong date.";
+}
 }
 
-/* Fade-in on scroll */
-window.addEventListener("scroll", () => {
-const blocks = document.querySelectorAll(".photo-block");
-
-blocks.forEach(block => {
-const position = block.getBoundingClientRect().top;
-const screenPosition = window.innerHeight / 1.2;
-
-if (position < screenPosition) {
-block.classList.add("visible");
-}
-});
-});
-
-/* YES button celebration */
+/* YES Button Celebration */
 document.querySelectorAll(".yes").forEach(btn => {
 btn.addEventListener("click", () => {
 alert("You just made me the happiest guy alive ❤️");
 });
 });
 
-/* Hidden name trigger */
+/* Hidden Name Trigger */
 let typed = "";
 document.addEventListener("keydown", (e) => {
 typed += e.key.toLowerCase();
 if (typed.includes("riyanshi")) {
-alert("You found the secret. I love you more than I show ❤️");
+alert("I love you more than I show ❤️");
 typed = "";
 }
 });
 
-/* Password Protection */
-let password = prompt("Enter the date that changed everything (DDMMYYYY):");
+/* Floating Love Emoji Generator */
+const emojis = ["❤️", "💕", "💖", "💘", "💗", "💓"];
+const container = document.getElementById("love-container");
 
-if (password !== "10102025") {
-document.body.innerHTML = `
-<h1 style="margin-top:100px;">Wrong date 🤍</h1>
-<p>Hint: 10 October 2025.</p>
-`;
+function createLove() {
+const love = document.createElement("div");
+love.classList.add("love");
+love.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+love.style.left = Math.random() * 100 + "vw";
+love.style.animationDuration = (5 + Math.random() * 5) + "s";
+love.style.fontSize = (20 + Math.random() * 25) + "px";
+
+container.appendChild(love);
+
+setTimeout(() => {
+love.remove();
+}, 10000);
 }
+
+setInterval(createLove, 300);

@@ -1,12 +1,12 @@
 /* ========== BODY ========== */
-body {
+html, body {
 margin: 0;
-font-family: 'Segoe UI', sans-serif;
-background: #fff5f7;
-text-align: center;
+padding: 0;
+width: 100%;
+height: auto;
 overflow-x: hidden;
 overflow-y: auto;
-position: relative;
+-webkit-overflow-scrolling: touch;
 }
 
 /* ========== FLOATING LOVE BACKGROUND ========== */

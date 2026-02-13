@@ -6,6 +6,51 @@ text-align: center;
 overflow: hidden;
 }
 
+/* Background Glow */
+body::before {
+content: "";
+position: fixed;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(255,105,180,0.15) 0%, transparent 70%);
+animation: bgPulse 4s infinite;
+z-index: -4;
+}
+
+@keyframes bgPulse {
+0%,100% { transform: scale(1); }
+50% { transform: scale(1.1); }
+}
+
+/* Sparkle Canvas */
+#sparkle-canvas {
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: -3;
+pointer-events: none;
+}
+
+/* Floating Love Emojis */
+.love-container {
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: -2;
+pointer-events: none;
+}
+
+.love {
+position: absolute;
+font-size: 22px;
+animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+from { transform: translateY(100vh); opacity: 0; }
+to { transform: translateY(-10vh); opacity: 1; }
+}
+
 /* Panels */
 .panel {
 height: 100vh;
@@ -14,52 +59,45 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 30px;
-transition: opacity 0.8s ease;
+transition: opacity 0.6s ease;
 }
 
-.hidden {
-display: none;
-}
+.hidden { display: none; }
 
-/* Input */
 input {
 padding: 12px;
-font-size: 16px; /* prevents mobile zoom */
+font-size: 16px;
 border-radius: 25px;
 border: 1px solid #ccc;
-margin: 10px 0;
-text-align: center;
 }
 
-/* Cute Buttons */
+/* Buttons */
 button {
 padding: 14px 28px;
 border-radius: 30px;
 border: none;
 font-size: 18px;
 font-weight: 600;
-background: linear-gradient(135deg, #ff4d6d, #ff8fab);
+background: linear-gradient(135deg,#ff4d6d,#ff8fab);
 color: white;
 cursor: pointer;
-box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
-transition: all 0.3s ease;
 margin-top: 20px;
+box-shadow: 0 8px 20px rgba(255,77,109,0.3);
+transition: 0.3s ease;
 }
 
-button:hover {
-transform: translateY(-3px);
-}
-
-button:active {
-transform: scale(0.96);
-}
+button:active { transform: scale(0.95); }
 
 /* Images */
 img {
 max-width: 80%;
 border-radius: 20px;
-margin-bottom: 20px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+animation: slowZoom 8s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+from { transform: scale(1); }
+to { transform: scale(1.05); }
 }
 
 /* Game */
@@ -68,32 +106,50 @@ position: relative;
 width: 100%;
 height: 300px;
 overflow: hidden;
-margin-top: 20px;
 }
 
 .floating-heart {
 position: absolute;
 font-size: 28px;
 cursor: pointer;
-animation: floatUp 4s linear forwards;
+animation: rise 4s linear forwards;
 }
 
-@keyframes floatUp {
+@keyframes rise {
 from { top: 100%; }
 to { top: -10%; }
 }
 
-/* Transition */
-.transition-box {
-animation: fadeIn 1s ease;
+/* Popup */
+.popup {
+position: fixed;
+width: 100%;
+height: 100%;
+backdrop-filter: blur(10px);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 20;
 }
 
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
+.popup-box {
+background: white;
+padding: 40px;
+border-radius: 30px;
+animation: popupIn 0.6s ease;
 }
 
-#error-msg {
-color: red;
-margin-top: 10px;
+@keyframes popupIn {
+from { transform: scale(0.7); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
+}
+
+/* Secret */
+.secret {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: white;
+padding: 15px;
+border-radius: 20px;
 }
